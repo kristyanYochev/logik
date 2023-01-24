@@ -1,5 +1,7 @@
 use std::fmt;
 
+/// Represents a formal logic formula.
+/// All of its nodes are stored on the heap.
 pub struct Formula {
     root: FormulaLink,
 }
@@ -47,12 +49,23 @@ impl Formula {
     }
 }
 
+/// The formula is always generated in fully-bracketed form.
+///
+/// ```rust
+/// let a = Formula::var(String::from("a"));
+/// let b = Formula::var(String::from("b"));
+/// let c = Formula::var(String::from("c"));
+/// let f = Formula::and(Formula::or(a, b), c);
+///
+/// assert_eq!(format!("{}", f), "((a | b) & c)")
+/// ```
 impl fmt::Display for Formula {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.root)
     }
 }
 
+/// Formula nodes are always displayed in their fully-bracketed state.
 impl fmt::Display for FormulaNode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         use FormulaNode::*;
