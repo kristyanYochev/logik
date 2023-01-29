@@ -52,6 +52,8 @@ impl Formula {
 /// The formula is always generated in fully-bracketed form.
 ///
 /// ```rust
+/// use logik::Formula;
+///
 /// let a = Formula::var(String::from("a"));
 /// let b = Formula::var(String::from("b"));
 /// let c = Formula::var(String::from("c"));
